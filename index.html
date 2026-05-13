@@ -660,6 +660,49 @@
     .side-price { color: var(--gold); font-weight: 600; font-size: 0.9rem; }
 
 
+    /* ───────────── MAP SECTION ───────────── */
+    .map-section {
+      padding: 5rem 1.5rem 3rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .map-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+      margin-top: 0.5rem;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      display: block;
+      filter: grayscale(0.6) contrast(1.1) brightness(0.7);
+      transition: filter var(--transition);
+    }
+    .map-wrap:hover iframe {
+      filter: grayscale(0.2) contrast(1.05) brightness(0.85);
+    }
+    .map-address {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+    }
+    .map-address i { color: var(--gold); }
+    .map-address a {
+      color: var(--cream);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(201,168,76,0.4);
+    }
+    .map-address a:hover { color: var(--gold); }
+
     /* ───────────── DISCLAIMER ───────────── */
     .disclaimer {
       text-align: center;
@@ -1073,20 +1116,44 @@
     *Consuming raw or undercooked meats, poultry, may increase your risk of foodborne illness.
   </div>
 
+  <!-- ═══════════ FIND US / MAP ═══════════ -->
+  <section class="map-section" id="location">
+    <h2 class="section-title" data-aos="fade-up">Find Us</h2>
+    <div class="gold-divider" data-aos="fade-up" data-aos-delay="100">
+      <i class="fa-solid fa-diamond"></i>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Come experience the vibe in person.</p>
+
+    <div class="map-wrap" data-aos="fade-up" data-aos-delay="200">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.5!2d-81.0198!3d34.0707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f8a4d7a6c7b2e1%3A0x0!2s6820+N+Main+St%2C+Columbia%2C+SC+29203!5e0!3m2!1sen!2sus!4v1700000000000"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mo'Hogany Location"></iframe>
+    </div>
+    <p class="map-address">
+      <i class="fa-solid fa-location-dot"></i>
+      <a href="https://www.google.com/maps/search/6820+N+Main+St,+Columbia,+SC+29203" target="_blank" rel="noopener">
+        6820 N Main St, Columbia, SC 29203
+      </a>
+    </p>
+  </section>
+
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer class="footer" id="contact">
     <div class="footer-inner">
       <div class="footer-info">
         <p class="footer-brand">MO'HOGANY</p>
-        <p><i class="fa-solid fa-location-dot"></i> 1247 Soul Street, Atlanta, GA 30303</p>
-        <p><i class="fa-solid fa-phone"></i> (404) 555-0187</p>
+        <p><i class="fa-solid fa-location-dot"></i> 6820 N Main St, Columbia, SC 29203</p>
+        <p><i class="fa-solid fa-phone"></i> <a href="tel:+18037229799">(803) 722-9799</a></p>
         <p><i class="fa-solid fa-envelope"></i> info@mohogany.com</p>
       </div>
       <div class="footer-center">
         <p class="footer-tagline">"Seafood & Cocktail Lounge"</p>
         <div class="social-links">
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/mohoganysandclounge/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/MohoganySeafoodCocktailLounge" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         </div>
       </div>
