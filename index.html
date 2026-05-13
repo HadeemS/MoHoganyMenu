@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAFOOD & COCKTAIL LOUNGE — Where Soul Meets the Sea</title>
+  <meta name="description" content="Premium soul food & cocktail lounge experience. Seafood boils, signature platters, craft cocktails, and Southern comfort in an upscale setting." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ───────────── CUSTOM PROPERTIES ───────────── */
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1c1c1c;
+      --gold: #C9A84C;
+      --gold-light: #e2c76a;
+      --gold-dark: #a8882e;
+      --cream: #f5f0e8;
+      --cream-dim: #b8b2a6;
+      --white: #ffffff;
+      --red-accent: #c0392b;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+      --max-width: 1200px;
+      --nav-height: 70px;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow-gold: 0 0 20px rgba(201, 168, 76, 0.15);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ───────────── RESET & BASE ───────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Noise texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--gold-light); }
+
+    /* ───────────── TYPOGRAPHY ───────────── */
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; color: var(--white); }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--cream-dim);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    /* ───────────── GOLD DIVIDER ───────────── */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem auto 2.5rem;
+      max-width: 400px;
+    }
+    .gold-divider::before,
+    .gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .gold-divider i {
+      color: var(--gold);
+      font-size: 0.75rem;
+    }
+
+    /* ───────────── NAVIGATION ───────────── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+      z-index: 1000;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(10, 10, 10, 0.97);
+      box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+    }
+    .navbar .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--cream-dim);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ───────────── HERO ───────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(139,90,43,0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0a0a 0%, #1a120a 40%, #12090a 70%, #0a0a0a 100%);
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, var(--bg-primary) 100%);
+    }
+
+    /* Animated floating particles */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      background: rgba(201,168,76,0.05);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: heroShimmer 4s ease-in-out infinite;
+      background-size: 200% 200%;
+    }
+    @keyframes heroShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+    .hero-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--cream-dim);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--bg-primary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+      color: var(--bg-primary);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--cream-dim);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-indicator i { font-size: 1.2rem; color: var(--gold); }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ───────────── SECTIONS ───────────── */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-dark {
+      background: var(--bg-secondary);
+    }
+    .section-full {
+      max-width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .section-full .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ───────────── MENU GRID ───────────── */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ───────────── MENU CARD ───────────── */
+    .menu-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.15);
+      box-shadow: var(--shadow-gold);
+    }
+    .menu-card:hover::before { opacity: 1; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
+    }
+    .card-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .card-price {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 50px;
+      margin-top: 0.75rem;
+    }
+    .badge-fav {
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .badge-chef {
+      background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.08));
+      color: var(--gold-light);
+      border: 1px solid rgba(201,168,76,0.35);
+      box-shadow: 0 0 12px rgba(201,168,76,0.15);
+      animation: chefGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes chefGlow {
+      0%   { box-shadow: 0 0 8px rgba(201,168,76,0.1); }
+      100% { box-shadow: 0 0 18px rgba(201,168,76,0.25); }
+    }
+
+    /* ───────────── CHEF MENU SECTION ───────────── */
+    .chef-section {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        var(--bg-secondary);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .chef-card {
+      background: linear-gradient(145deg, #1c1810 0%, var(--bg-card) 100%);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .chef-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    }
+    .chef-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .chef-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(201,168,76,0.12);
+    }
+
+    .chef-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ───────────── PRICE TABLE (Appetizers & Baskets) ───────────── */
+    .price-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    .price-table thead th {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.75rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .price-table thead th:first-child {
+      text-align: left;
+      width: 50%;
+    }
+    .price-table tbody tr {
+      transition: background var(--transition);
+    }
+    .price-table tbody tr:hover {
+      background: var(--bg-card-hover);
+    }
+    .price-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      vertical-align: middle;
+    }
+    .price-table td:first-child {
+      font-weight: 500;
+      color: var(--white);
+      font-size: 0.95rem;
+    }
+    .price-table td:not(:first-child) {
+      text-align: center;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .price-table-wrap {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: var(--radius);
+      overflow: hidden;
+      overflow-x: auto;
+    }
+
+    .app-simple-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .app-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .app-item:hover {
+      border-color: rgba(201,168,76,0.12);
+      background: var(--bg-card-hover);
+    }
+    .app-name {
+      font-weight: 500;
+      color: var(--white);
+      font-size: 0.95rem;
+    }
+    .app-price {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    .subsection-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .subsection-title i {
+      font-size: 0.9rem;
+    }
+
+    /* ───────────── WING FLAVORS ───────────── */
+    .flavors-section {
+      margin-top: 2.5rem;
+    }
+    .flavors-label {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .flavor-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .flavor-chip {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--cream);
+      transition: background var(--transition), color var(--transition);
+      cursor: default;
+      white-space: nowrap;
+    }
+    .flavor-chip:hover {
+      background: rgba(201,168,76,0.18);
+      color: var(--gold-light);
+    }
+
+    /* ───────────── SIDES GRID ───────────── */
+    .sides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .side-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: border-color var(--transition);
+    }
+    .side-item:hover { border-color: rgba(201,168,76,0.12); }
+    .side-name { font-weight: 500; color: var(--white); font-size: 0.95rem; }
+    .side-price { color: var(--gold); font-weight: 600; font-size: 0.9rem; }
+
+    /* ───────────── RESERVATION CTA ───────────── */
+    .reservation-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--bg-primary);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.9rem 1.6rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+      transition: transform var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+    }
+    .reservation-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+      color: var(--bg-primary);
+    }
+
+    /* ───────────── DISCLAIMER ───────────── */
+    .disclaimer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.75rem;
+      color: rgba(184,178,166,0.5);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* ───────────── FOOTER ───────────── */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid rgba(201,168,76,0.08);
+      padding: 3.5rem 1.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      gap: 2rem;
+    }
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .footer-info p {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+    .footer-info i {
+      color: var(--gold);
+      width: 1.2rem;
+      margin-right: 0.3rem;
+    }
+    .footer-center {
+      text-align: center;
+    }
+    .footer-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      color: var(--cream-dim);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 1rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .social-links a:hover {
+      background: rgba(201,168,76,0.12);
+      transform: translateY(-2px);
+    }
+    .footer-right {
+      text-align: right;
+    }
+    .footer-hours h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .footer-hours p {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.75rem;
+      color: rgba(184,178,166,0.4);
+    }
+
+    /* ───────────── RESPONSIVE ───────────── */
+    @media (max-width: 900px) {
+      .chef-grid { grid-template-columns: 1fr; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-right { text-align: center; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: rgba(10,10,10,0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        border-bottom: 1px solid rgba(201,168,76,0.1);
+        transform: translateY(-120%);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.3s ease;
+        pointer-events: none;
+      }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+      .hamburger { display: flex; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .app-simple-grid { grid-template-columns: 1fr; }
+      .price-table { font-size: 0.85rem; }
+      .price-table thead th { font-size: 0.6rem; padding: 0.6rem 0.5rem; }
+      .price-table td { padding: 0.7rem 0.5rem; }
+      .sides-grid { grid-template-columns: 1fr 1fr; }
+      .section { padding: 3.5rem 1.25rem; }
+      .reservation-btn { bottom: 1.25rem; right: 1.25rem; padding: 0.75rem 1.2rem; font-size: 0.7rem; }
+    }
+
+    @media (max-width: 480px) {
+      .sides-grid { grid-template-columns: 1fr; }
+      .hero-badge { font-size: 0.65rem; padding: 0.4rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand">STAFOOD & COCKTAIL LOUNGE</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#main-course">Main Course</a></li>
+        <li><a href="#chef-menu">Chef Menu</a></li>
+        <li><a href="#appetizers">Appetizers</a></li>
+        <li><a href="#sides">Sides</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <span class="hero-badge" data-aos="fade-down" data-aos-delay="200">Est. 2024 &nbsp;·&nbsp; Soul Food & Seafood</span>
+      <h1 data-aos="fade-up" data-aos-delay="400">STAFOOD &<br/>COCKTAIL LOUNGE</h1>
+      <p class="hero-tagline" data-aos="fade-up" data-aos-delay="600">Where Soul Meets the Sea</p>
+      <a href="#main-course" class="hero-cta" data-aos="fade-up" data-aos-delay="800">
+        <i class="fa-solid fa-utensils"></i> Explore the Menu
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ═══════════ MAIN COURSE ═══════════ -->
+  <section class="section" id="main-course">
+    <h2 class="section-title" data-aos="fade-up">Main Course</h2>
+    <div class="gold-divider" data-aos="fade-up" data-aos-delay="100">
+      <i class="fa-solid fa-diamond"></i>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Hearty plates crafted with soul, served with love.</p>
+
+    <div class="menu-grid">
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header">
+          <span class="card-name">Ramen Seafood Bowl</span>
+          <span class="card-price">$20</span>
+        </div>
+        <p class="card-desc">Ramen noodles with shrimp, crab stick, mussels, egg, corn</p>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-header">
+          <span class="card-name">Crab Boil</span>
+          <span class="card-price">$25</span>
+        </div>
+        <p class="card-desc">Crab legs, shrimp, mussels, corn, potatoes</p>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-header">
+          <span class="card-name">Mo'Hogany Platter</span>
+          <span class="card-price">$30</span>
+        </div>
+        <p class="card-desc">Fried blue crabs, shrimp, seafood rice</p>
+        <span class="badge badge-fav"><i class="fa-solid fa-star"></i> Fan Favorite</span>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="card-header">
+          <span class="card-name">Surf & Turf</span>
+          <span class="card-price">$36</span>
+        </div>
+        <p class="card-desc">Ribeye steak, shrimp with your choice of two sides</p>
+        <span class="badge badge-fav"><i class="fa-solid fa-star"></i> Fan Favorite</span>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-header">
+          <span class="card-name">Lamb Chops</span>
+          <span class="card-price">$35</span>
+        </div>
+        <p class="card-desc">3 lamb chops, sautéed shrimp, garlic mashed potatoes with broccoli or asparagus</p>
+        <span class="badge badge-fav"><i class="fa-solid fa-star"></i> Fan Favorite</span>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="350">
+        <div class="card-header">
+          <span class="card-name">Crawfish Boil</span>
+          <span class="card-price">$20</span>
+        </div>
+        <p class="card-desc">Crawfish, mussels, shrimp, sausage, egg, potatoes, corn</p>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="card-header">
+          <span class="card-name">Big Back Burger</span>
+          <span class="card-price">$22</span>
+        </div>
+        <p class="card-desc">Double cheeseburger, lettuce, tomatoes, onion ring, pickles, served with 6 wings and fries</p>
+        <span class="badge badge-fav"><i class="fa-solid fa-star"></i> Fan Favorite</span>
+      </div>
+
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="450">
+        <div class="card-header">
+          <span class="card-name">Philly Sub Platter</span>
+          <span class="card-price">$25</span>
+        </div>
+        <p class="card-desc">Philly cheesesteak sub with peppers and onion, served with 6 wings and fries</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ CHEF MENU ═══════════ -->
+  <section class="section section-full chef-section" id="chef-menu">
+    <div class="section-inner">
+      <h2 class="section-title" data-aos="fade-up">Chef Menu</h2>
+      <div class="gold-divider" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-crown"></i>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Premium selections, curated by the chef for the boldest appetites.</p>
+
+      <div class="chef-grid">
+
+        <div class="chef-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-header">
+            <span class="card-name">Key Lover Boil</span>
+            <span class="card-price">$50</span>
+          </div>
+          <p class="card-desc">4 crab leg clusters, sausages, shrimp, mussels, potatoes, corn, eggs</p>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+            <span class="badge badge-chef"><i class="fa-solid fa-hat-chef fa-fire"></i> Chef's Special</span>
+            <span class="badge badge-fav"><i class="fa-solid fa-star"></i> Fan Favorite</span>
+          </div>
+        </div>
+
+        <div class="chef-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-header">
+            <span class="card-name">Chef Boil</span>
+            <span class="card-price">$30</span>
+          </div>
+          <p class="card-desc">Crab legs, crawfish, shrimp, mussels, sausages, potatoes, corn, eggs</p>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+            <span class="badge badge-chef"><i class="fa-solid fa-fire"></i> Chef's Special</span>
+            <span class="badge badge-fav"><i class="fa-solid fa-star"></i> Fan Favorite</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ APPETIZERS ═══════════ -->
+  <section class="section" id="appetizers">
+    <h2 class="section-title" data-aos="fade-up">Appetizers</h2>
+    <div class="gold-divider" data-aos="fade-up" data-aos-delay="100">
+      <i class="fa-solid fa-diamond"></i>
+    </div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">Start it off right — small bites, big flavor.</p>
+
+    <!-- Priced appetizer table -->
+    <div class="price-table-wrap" data-aos="fade-up" data-aos-delay="200">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Only</th>
+            <th>w/ Fries</th>
+            <th>w/ Seafood Rice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Wings (8)</td><td>$12</td><td>$15</td><td>$20</td></tr>
+          <tr><td>Fish</td><td>$12</td><td>$15</td><td>$20</td></tr>
+          <tr><td>Shrimp (8)</td><td>$12</td><td>$15</td><td>$20</td></tr>
+          <tr><td>Fried Crabs (2)</td><td>$8</td><td>$12</td><td>$17</td></tr>
+          <tr><td>Pork Chop</td><td>$12</td><td>$15</td><td>$20</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Single-price appetizers -->
+    <div class="app-simple-grid" data-aos="fade-up" data-aos-delay="250">
+      <div class="app-item"><span class="app-name">Fried Crab Sticks (2)</span><span class="app-price">$6</span></div>
+      <div class="app-item"><span class="app-name">House Salad</span><span class="app-price">$8</span></div>
+      <div class="app-item"><span class="app-name">Caesar Salad</span><span class="app-price">$10</span></div>
+      <div class="app-item"><span class="app-name">Peel & Eat Shrimp</span><span class="app-price">$16</span></div>
+      <div class="app-item"><span class="app-name">Mozzarella Sticks</span><span class="app-price">$8</span></div>
+    </div>
+
+    <!-- ── BASKETS ── -->
+    <h3 class="subsection-title" data-aos="fade-up" data-aos-delay="280">
+      <i class="fa-solid fa-basket-shopping"></i> Baskets
+    </h3>
+
+    <div class="price-table-wrap" data-aos="fade-up" data-aos-delay="300">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Only</th>
+            <th>w/ Fries</th>
+            <th>w/ Seafood Rice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Bang Bang Shrimp</td><td>$14</td><td>$17</td><td>$20</td></tr>
+          <tr><td>Salmon Bites</td><td>$14</td><td>$16</td><td>$20</td></tr>
+          <tr><td>Fried Okra</td><td>$6</td><td>$10</td><td>$15</td></tr>
+          <tr><td>Fried Oysters</td><td>$12</td><td>$15</td><td>$20</td></tr>
+          <tr><td>Seafood Eggrolls (2)</td><td>$14</td><td>$17</td><td>$20</td></tr>
+          <tr><td>Philly Eggrolls (2)</td><td>$12</td><td>$15</td><td>$20</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Wing Flavors -->
+    <div class="flavors-section" data-aos="fade-up" data-aos-delay="350">
+      <p class="flavors-label"><i class="fa-solid fa-pepper-hot"></i> Wing Flavors</p>
+      <div class="flavor-scroll">
+        <span class="flavor-chip">BBQ</span>
+        <span class="flavor-chip">Buffalo</span>
+        <span class="flavor-chip">Hot</span>
+        <span class="flavor-chip">Ranch</span>
+        <span class="flavor-chip">Lemon Pepper</span>
+        <span class="flavor-chip">Garlic Honey</span>
+        <span class="flavor-chip">Honey Mustard</span>
+        <span class="flavor-chip">Garlic Ranch</span>
+        <span class="flavor-chip">Parmesan</span>
+        <span class="flavor-chip">Rosemary</span>
+        <span class="flavor-chip">Crack Wings</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SIDES ═══════════ -->
+  <section class="section section-full chef-section" id="sides">
+    <div class="section-inner">
+      <h2 class="section-title" data-aos="fade-up">Sides</h2>
+      <div class="gold-divider" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-diamond"></i>
+      </div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="150">The perfect finishing touches to any plate.</p>
+
+      <div class="sides-grid" data-aos="fade-up" data-aos-delay="200">
+        <div class="side-item"><span class="side-name">Fries</span><span class="side-price">$5</span></div>
+        <div class="side-item"><span class="side-name">Seafood Rice</span><span class="side-price">$12</span></div>
+        <div class="side-item"><span class="side-name">Mashed Potatoes</span><span class="side-price">$6</span></div>
+        <div class="side-item"><span class="side-name">Loaded Mashed</span><span class="side-price">$9</span></div>
+        <div class="side-item"><span class="side-name">Broccoli Steamed</span><span class="side-price">$6</span></div>
+        <div class="side-item"><span class="side-name">Fried Broccoli</span><span class="side-price">$6</span></div>
+        <div class="side-item"><span class="side-name">Asparagus</span><span class="side-price">$6</span></div>
+        <div class="side-item"><span class="side-name">Corn on the Cob</span><span class="side-price">$6</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ DISCLAIMER ═══════════ -->
+  <div class="disclaimer">
+    *Consuming raw or undercooked meats, poultry, may increase your risk of foodborne illness.
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-info">
+        <p class="footer-brand">STAFOOD & COCKTAIL LOUNGE</p>
+        <p><i class="fa-solid fa-location-dot"></i> 1247 Soul Street, Atlanta, GA 30303</p>
+        <p><i class="fa-solid fa-phone"></i> (404) 555-0187</p>
+        <p><i class="fa-solid fa-envelope"></i> info@stafoodlounge.com</p>
+      </div>
+      <div class="footer-center">
+        <p class="footer-tagline">"Where Soul Meets the Sea"</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-hours">
+          <h4>Hours</h4>
+          <p>Tues – Thurs: 4 PM – 11 PM</p>
+          <p>Fri – Sat: 4 PM – 2 AM</p>
+          <p>Sun: 12 PM – 9 PM</p>
+          <p>Mon: Closed</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2024 STAFOOD & Cocktail Lounge. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- ═══════════ RESERVATION BUTTON ═══════════ -->
+  <a href="#contact" class="reservation-btn" id="reservationBtn">
+    <i class="fa-solid fa-calendar-check"></i> Make a Reservation
+  </a>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    /* ── AOS Init ── */
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60,
+    });
+
+    /* ── Navbar scroll effect ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    /* ── Active nav link highlight ── */
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    const observerOptions = { rootMargin: '-40% 0px -55% 0px' };
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navAnchors.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(s => sectionObserver.observe(s));
+
+    /* ── Hamburger toggle ── */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    /* ── Floating particles ── */
+    (function createParticles() {
+      const container = document.getElementById('particles');
+      const count = 35;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('span');
+        p.classList.add('particle');
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (6 + Math.random() * 10) + 's';
+        p.style.animationDelay = (Math.random() * 8) + 's';
+        p.style.width = p.style.height = (1.5 + Math.random() * 3) + 'px';
+        container.appendChild(p);
+      }
+    })();
+
+    /* ── Hide reservation button at footer ── */
+    const reservationBtn = document.getElementById('reservationBtn');
+    const footer = document.querySelector('.footer');
+
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        reservationBtn.style.opacity = entry.isIntersecting ? '0' : '1';
+        reservationBtn.style.pointerEvents = entry.isIntersecting ? 'none' : 'all';
+      });
+    }, { threshold: 0.1 });
+
+    footerObserver.observe(footer);
+  </script>
+</body>
+</html>
