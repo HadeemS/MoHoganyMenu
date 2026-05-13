@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STAFOOD & COCKTAIL LOUNGE — Where Soul Meets the Sea</title>
-  <meta name="description" content="Premium soul food & cocktail lounge experience. Seafood boils, signature platters, craft cocktails, and Southern comfort in an upscale setting." />
+  <title>MO'HOGANY — Seafood &amp; Cocktail Lounge | Where Soul Meets the Sea</title>
+  <meta name="description" content="Mo'Hogany Seafood & Cocktail Lounge — premium soul food, seafood boils, signature platters, craft cocktails, and Southern comfort in an upscale setting." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -659,35 +659,6 @@
     .side-name { font-weight: 500; color: var(--white); font-size: 0.95rem; }
     .side-price { color: var(--gold); font-weight: 600; font-size: 0.9rem; }
 
-    /* ───────────── RESERVATION CTA ───────────── */
-    .reservation-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 900;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: var(--bg-primary);
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.9rem 1.6rem;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
-      transition: transform var(--transition), box-shadow var(--transition);
-      text-decoration: none;
-    }
-    .reservation-btn:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 8px 30px rgba(201,168,76,0.4);
-      color: var(--bg-primary);
-    }
 
     /* ───────────── DISCLAIMER ───────────── */
     .disclaimer {
@@ -827,7 +798,6 @@
       .price-table td { padding: 0.7rem 0.5rem; }
       .sides-grid { grid-template-columns: 1fr 1fr; }
       .section { padding: 3.5rem 1.25rem; }
-      .reservation-btn { bottom: 1.25rem; right: 1.25rem; padding: 0.75rem 1.2rem; font-size: 0.7rem; }
     }
 
     @media (max-width: 480px) {
@@ -841,7 +811,7 @@
   <!-- ═══════════ NAVIGATION ═══════════ -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#hero" class="nav-brand">STAFOOD & COCKTAIL LOUNGE</a>
+      <a href="#hero" class="nav-brand">MO'HOGANY</a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#main-course">Main Course</a></li>
         <li><a href="#chef-menu">Chef Menu</a></li>
@@ -860,9 +830,9 @@
     <div class="hero-bg"></div>
     <div class="hero-particles" id="particles"></div>
     <div class="hero-content">
-      <span class="hero-badge" data-aos="fade-down" data-aos-delay="200">Est. 2024 &nbsp;·&nbsp; Soul Food & Seafood</span>
-      <h1 data-aos="fade-up" data-aos-delay="400">STAFOOD &<br/>COCKTAIL LOUNGE</h1>
-      <p class="hero-tagline" data-aos="fade-up" data-aos-delay="600">Where Soul Meets the Sea</p>
+      <span class="hero-badge" data-aos="fade-down" data-aos-delay="200">Seafood &nbsp;·&nbsp; Cocktails &nbsp;·&nbsp; Soul Food</span>
+      <h1 data-aos="fade-up" data-aos-delay="400">MO'HOGANY</h1>
+      <p class="hero-tagline" data-aos="fade-up" data-aos-delay="600">Seafood & Cocktail Lounge</p>
       <a href="#main-course" class="hero-cta" data-aos="fade-up" data-aos-delay="800">
         <i class="fa-solid fa-utensils"></i> Explore the Menu
       </a>
@@ -1107,13 +1077,13 @@
   <footer class="footer" id="contact">
     <div class="footer-inner">
       <div class="footer-info">
-        <p class="footer-brand">STAFOOD & COCKTAIL LOUNGE</p>
+        <p class="footer-brand">MO'HOGANY</p>
         <p><i class="fa-solid fa-location-dot"></i> 1247 Soul Street, Atlanta, GA 30303</p>
         <p><i class="fa-solid fa-phone"></i> (404) 555-0187</p>
-        <p><i class="fa-solid fa-envelope"></i> info@stafoodlounge.com</p>
+        <p><i class="fa-solid fa-envelope"></i> info@mohogany.com</p>
       </div>
       <div class="footer-center">
-        <p class="footer-tagline">"Where Soul Meets the Sea"</p>
+        <p class="footer-tagline">"Seafood & Cocktail Lounge"</p>
         <div class="social-links">
           <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1131,14 +1101,10 @@
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2024 STAFOOD & Cocktail Lounge. All rights reserved.
+      &copy; 2024 Mo'Hogany Seafood & Cocktail Lounge. All rights reserved.
     </div>
   </footer>
 
-  <!-- ═══════════ RESERVATION BUTTON ═══════════ -->
-  <a href="#contact" class="reservation-btn" id="reservationBtn">
-    <i class="fa-solid fa-calendar-check"></i> Make a Reservation
-  </a>
 
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -1207,18 +1173,6 @@
       }
     })();
 
-    /* ── Hide reservation button at footer ── */
-    const reservationBtn = document.getElementById('reservationBtn');
-    const footer = document.querySelector('.footer');
-
-    const footerObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        reservationBtn.style.opacity = entry.isIntersecting ? '0' : '1';
-        reservationBtn.style.pointerEvents = entry.isIntersecting ? 'none' : 'all';
-      });
-    }, { threshold: 0.1 });
-
-    footerObserver.observe(footer);
   </script>
 </body>
 </html>
