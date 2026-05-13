@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0a0a0a" />
   <title>MO'HOGANY — Seafood &amp; Cocktail Lounge | Where Soul Meets the Sea</title>
   <meta name="description" content="Mo'Hogany Seafood & Cocktail Lounge — premium soul food, seafood boils, signature platters, craft cocktails, and Southern comfort in an upscale setting." />
 
@@ -47,6 +50,8 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: var(--nav-height);
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
@@ -56,6 +61,8 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: rgba(201,168,76,0.15);
     }
 
     /* Noise texture overlay */
@@ -162,6 +169,10 @@
       text-transform: uppercase;
       transition: color var(--transition);
       position: relative;
+      padding: 0.5rem 0;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
     .nav-links a::after {
       content: '';
@@ -368,7 +379,7 @@
     /* ───────────── MENU GRID ───────────── */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
       gap: 1.5rem;
     }
 
@@ -500,7 +511,7 @@
 
     .chef-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
       gap: 2rem;
     }
 
@@ -558,7 +569,7 @@
 
     .app-simple-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
       gap: 1rem;
       margin-top: 1.5rem;
     }
@@ -642,7 +653,7 @@
     /* ───────────── SIDES GRID ───────────── */
     .sides-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
       gap: 1rem;
     }
     .side-item {
@@ -801,6 +812,8 @@
     }
 
     /* ───────────── RESPONSIVE ───────────── */
+
+    /* Tablets & small laptops */
     @media (max-width: 900px) {
       .chef-grid { grid-template-columns: 1fr; }
       .footer-inner {
@@ -808,20 +821,25 @@
         text-align: center;
       }
       .footer-right { text-align: center; }
+      .map-wrap iframe { height: 350px; }
     }
 
+    /* Tablets portrait & large phones landscape */
     @media (max-width: 768px) {
+      :root { --nav-height: 60px; }
       .nav-links {
         position: fixed;
         top: var(--nav-height);
         left: 0;
         right: 0;
+        bottom: 0;
         background: rgba(10,10,10,0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         padding: 2rem 0;
-        gap: 1.5rem;
+        gap: 1.8rem;
         border-bottom: 1px solid rgba(201,168,76,0.1);
         transform: translateY(-120%);
         opacity: 0;
@@ -833,19 +851,132 @@
         opacity: 1;
         pointer-events: all;
       }
+      .nav-links a { font-size: 1rem; }
       .hamburger { display: flex; }
       .menu-grid { grid-template-columns: 1fr; }
       .app-simple-grid { grid-template-columns: 1fr; }
       .price-table { font-size: 0.85rem; }
-      .price-table thead th { font-size: 0.6rem; padding: 0.6rem 0.5rem; }
+      .price-table thead th { font-size: 0.65rem; padding: 0.65rem 0.5rem; }
       .price-table td { padding: 0.7rem 0.5rem; }
       .sides-grid { grid-template-columns: 1fr 1fr; }
       .section { padding: 3.5rem 1.25rem; }
+      .map-section { padding: 3.5rem 1.25rem 2rem; }
+      .map-wrap iframe { height: 300px; }
+      .hero { min-height: 100svh; }
+      .hero-cta { padding: 0.9rem 2rem; font-size: 0.85rem; }
+      .section-title { font-size: clamp(1.6rem, 5vw, 2.5rem); }
+      .section-subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
+      .gold-divider { margin: 0.75rem auto 1.5rem; }
+      .chef-card { padding: 1.5rem; }
+      .card-name { font-size: 1.1rem; }
+      .footer { padding: 2.5rem 1.25rem 1.5rem; }
+      .footer-brand { font-size: 1.15rem; }
+      .footer-info p, .footer-hours p { font-size: 0.9rem; }
+      .social-links a { width: 46px; height: 46px; font-size: 1.1rem; }
     }
 
+    /* Phones (iPhone SE / Samsung Galaxy / Pixel etc.) */
     @media (max-width: 480px) {
       .sides-grid { grid-template-columns: 1fr; }
-      .hero-badge { font-size: 0.65rem; padding: 0.4rem 1rem; }
+      .hero-badge { font-size: 0.6rem; padding: 0.35rem 0.9rem; letter-spacing: 0.2em; }
+      .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .hero-tagline { font-size: 1rem; margin-bottom: 2rem; }
+      .hero-cta { padding: 0.85rem 1.8rem; font-size: 0.8rem; }
+      .section { padding: 3rem 1rem; }
+      .map-section { padding: 3rem 1rem 1.5rem; }
+      .section-title { font-size: 1.6rem; }
+      .section-subtitle { font-size: 0.9rem; margin-bottom: 1.5rem; }
+      .menu-card { padding: 1.25rem; }
+      .card-name { font-size: 1.05rem; }
+      .card-price { font-size: 1rem; }
+      .card-desc { font-size: 0.85rem; }
+      .chef-card { padding: 1.25rem; }
+      .price-table { font-size: 0.8rem; }
+      .price-table thead th { font-size: 0.55rem; padding: 0.5rem 0.35rem; letter-spacing: 0.05em; }
+      .price-table td { padding: 0.6rem 0.35rem; font-size: 0.82rem; }
+      .app-item { padding: 0.85rem 1rem; }
+      .app-name { font-size: 0.9rem; }
+      .app-price { font-size: 0.85rem; }
+      .side-item { padding: 0.85rem 1rem; }
+      .subsection-title { font-size: 1.2rem; margin-top: 2rem; }
+      .flavors-section { margin-top: 2rem; }
+      .flavor-chip { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
+      .map-wrap iframe { height: 250px; }
+      .map-address { font-size: 0.85rem; }
+      .footer { padding: 2rem 1rem 1.25rem; }
+      .footer-bottom { margin-top: 1.5rem; padding-top: 1rem; }
+      .social-links { gap: 1rem; }
+      .social-links a { width: 44px; height: 44px; }
+      .disclaimer { font-size: 0.7rem; padding: 1.5rem 1rem; }
+      .nav-brand { font-size: 1.1rem; }
+      .scroll-indicator { bottom: 1.25rem; }
+    }
+
+    /* Very small phones (iPhone SE 1st gen, Galaxy A series) */
+    @media (max-width: 360px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-tagline { font-size: 0.9rem; }
+      .hero-badge { font-size: 0.55rem; padding: 0.3rem 0.75rem; }
+      .hero-cta { padding: 0.75rem 1.5rem; font-size: 0.75rem; }
+      .section { padding: 2.5rem 0.75rem; }
+      .map-section { padding: 2.5rem 0.75rem 1.25rem; }
+      .price-table thead th { font-size: 0.5rem; }
+      .price-table td { padding: 0.5rem 0.25rem; font-size: 0.75rem; }
+      .card-name { font-size: 1rem; }
+      .card-price { font-size: 0.95rem; }
+      .nav-brand { font-size: 1rem; letter-spacing: 0.03em; }
+      .map-wrap iframe { height: 220px; }
+    }
+
+    /* Landscape phones */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero { min-height: auto; padding: 6rem 2rem 3rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .scroll-indicator { display: none; }
+    }
+
+    /* Large desktops & ultra-wide */
+    @media (min-width: 1400px) {
+      :root { --max-width: 1300px; }
+      .section { padding: 6rem 2rem; }
+      .map-section { padding: 6rem 2rem 3rem; }
+    }
+
+    /* Safe area insets for notched phones (iPhone X+, Samsung punch-hole) */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .navbar .container {
+        padding-left: max(1.5rem, env(safe-area-inset-left));
+        padding-right: max(1.5rem, env(safe-area-inset-right));
+      }
+      .footer {
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+      }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .menu-card:hover { transform: none; box-shadow: none; }
+      .menu-card:active {
+        transform: scale(0.98);
+        border-color: rgba(201,168,76,0.15);
+      }
+      .chef-card:hover { transform: none; box-shadow: none; }
+      .chef-card:active { transform: scale(0.98); }
+      .app-item:hover { background: var(--bg-card); border-color: rgba(255,255,255,0.03); }
+      .app-item:active { background: var(--bg-card-hover); border-color: rgba(201,168,76,0.12); }
+      .map-wrap iframe { filter: grayscale(0.3) contrast(1.05) brightness(0.8); }
+      .map-wrap:hover iframe { filter: grayscale(0.3) contrast(1.05) brightness(0.8); }
+    }
+
+    /* Print styles */
+    @media print {
+      body::after { display: none; }
+      .navbar, .hero-particles, .scroll-indicator, .hero-bg { display: none; }
+      .hero { min-height: auto; padding: 2rem; }
+      .hero h1 { -webkit-text-fill-color: #000; color: #000; background: none; animation: none; }
+      .section, .section-full { break-inside: avoid; }
+      * { color: #000 !important; background: #fff !important; border-color: #ccc !important; }
+      .gold-divider::before, .gold-divider::after { background: #ccc; }
     }
   </style>
 </head>
